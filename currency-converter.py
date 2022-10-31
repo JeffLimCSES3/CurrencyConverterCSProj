@@ -11,23 +11,17 @@
 from PyQt5 import QtCore, QtGui, QtWidgets
 
 import requests
-url = 'https://v6.exchangerate-api.com/v6/115fa7e93047be6a26a1c328/latest/USD'
-
-# Making our request
-response = requests.get(url)
-data = response.json()
-print(data)
 
 class Ui_MainWindow(object):
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("MainWindow")
-        MainWindow.resize(258, 419)
+        MainWindow.resize(255, 419)
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
         self.label = QtWidgets.QLabel(self.centralwidget)
-        self.label.setGeometry(QtCore.QRect(10, 10, 241, 31))
+        self.label.setGeometry(QtCore.QRect(10, 10, 255, 31))
         font = QtGui.QFont()
-        font.setPointSize(20)
+        font.setPointSize(16)
         self.label.setFont(font)
         self.label.setObjectName("label")
         self.startingCurrencyInput = QtWidgets.QTextEdit(self.centralwidget)
@@ -51,7 +45,7 @@ class Ui_MainWindow(object):
         font.setPointSize(19)
         self.convertCurrencyButton.setFont(font)
         self.convertCurrencyButton.setObjectName("convertCurrencyButton")
-        self.swapCurrenciesButton = QtWidgets.QPushButton(self.centralwidget)
+        self.swapCurrenciesButton = QtWidgets.QPushButton(self.centralwidget, clicked = lambda: self.switch_currency_button_pressed())
         self.swapCurrenciesButton.setGeometry(QtCore.QRect(10, 290, 231, 51))
         font = QtGui.QFont()
         font.setPointSize(19)
@@ -71,20 +65,22 @@ class Ui_MainWindow(object):
         self.startingCurrencyInputDropDown.addItem("")
         self.startingCurrencyInputDropDown.addItem("")
         self.startingCurrencyInputDropDown.addItem("")
-        self.startingCurrencyInputDropDown_2 = QtWidgets.QComboBox(self.centralwidget)
-        self.startingCurrencyInputDropDown_2.setGeometry(QtCore.QRect(10, 130, 221, 22))
-        self.startingCurrencyInputDropDown_2.setObjectName("startingCurrencyInputDropDown_2")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
-        self.startingCurrencyInputDropDown_2.addItem("")
+
+        self.exchangeCurrencyInputDropdown = QtWidgets.QComboBox(self.centralwidget)
+        self.exchangeCurrencyInputDropdown.setGeometry(QtCore.QRect(10, 130, 221, 22))
+        self.exchangeCurrencyInputDropdown.setObjectName("exchangeCurrencyInputDropdown")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+        self.exchangeCurrencyInputDropdown.addItem("")
+
         MainWindow.setCentralWidget(self.centralwidget)
         self.menubar = QtWidgets.QMenuBar(MainWindow)
         self.menubar.setGeometry(QtCore.QRect(0, 0, 258, 21))
@@ -104,39 +100,85 @@ class Ui_MainWindow(object):
         self.exchangeCurrencyOutput.setText(_translate("MainWindow", "  "))
         self.convertCurrencyButton.setText(_translate("MainWindow", "Convert"))
         self.swapCurrenciesButton.setText(_translate("MainWindow", "ɅV"))
-        self.startingCurrencyInputDropDown.setItemText(0, _translate("MainWindow", "USD (United States Dollar)"))
-        self.startingCurrencyInputDropDown.setItemText(1, _translate("MainWindow", "IDR (Indonesian Rupiah)"))
-        self.startingCurrencyInputDropDown.setItemText(2, _translate("MainWindow", "AED (UAE Dirham)"))
-        self.startingCurrencyInputDropDown.setItemText(3, _translate("MainWindow", "AUD (Australian Dollar)"))
-        self.startingCurrencyInputDropDown.setItemText(4, _translate("MainWindow", "CAD (Canadian Dollar)"))
-        self.startingCurrencyInputDropDown.setItemText(5, _translate("MainWindow", "CHF (Swiss Franc)"))
-        self.startingCurrencyInputDropDown.setItemText(6, _translate("MainWindow", "EUR (Euro)"))
-        self.startingCurrencyInputDropDown.setItemText(7, _translate("MainWindow", "GBP (Pound Sterling)"))
-        self.startingCurrencyInputDropDown.setItemText(8, _translate("MainWindow", "HKD (Hong Kong Dollar)"))
-        self.startingCurrencyInputDropDown.setItemText(9, _translate("MainWindow", "JPY (Japanese Yen)"))
-        self.startingCurrencyInputDropDown.setItemText(10, _translate("MainWindow", "SGD (Singapore Dollar)"))
-        self.startingCurrencyInputDropDown_2.setItemText(0, _translate("MainWindow", "USD (United States Dollar)"))
-        self.startingCurrencyInputDropDown_2.setItemText(1, _translate("MainWindow", "IDR (Indonesian Rupiah)"))
-        self.startingCurrencyInputDropDown_2.setItemText(2, _translate("MainWindow", "AED (UAE Dirham)"))
-        self.startingCurrencyInputDropDown_2.setItemText(3, _translate("MainWindow", "AUD (Australian Dollar)"))
-        self.startingCurrencyInputDropDown_2.setItemText(4, _translate("MainWindow", "CAD (Canadian Dollar)"))
-        self.startingCurrencyInputDropDown_2.setItemText(5, _translate("MainWindow", "CHF (Swiss Franc)"))
-        self.startingCurrencyInputDropDown_2.setItemText(6, _translate("MainWindow", "EUR (Euro)"))
-        self.startingCurrencyInputDropDown_2.setItemText(7, _translate("MainWindow", "GBP (Pound Sterling)"))
-        self.startingCurrencyInputDropDown_2.setItemText(8, _translate("MainWindow", "HKD (Hong Kong Dollar)"))
-        self.startingCurrencyInputDropDown_2.setItemText(9, _translate("MainWindow", "JPY (Japanese Yen)"))
-        self.startingCurrencyInputDropDown_2.setItemText(10, _translate("MainWindow", "SGD (Singapore Dollar)"))
+
+        #Default starting currency set to IDR
+        self.startingCurrencyInputDropDown.setItemText(0, _translate("MainWindow", "IDR")) 
+        self.startingCurrencyInputDropDown.setItemText(1, _translate("MainWindow", "USD"))
+        self.startingCurrencyInputDropDown.setItemText(2, _translate("MainWindow", "AED"))
+        self.startingCurrencyInputDropDown.setItemText(3, _translate("MainWindow", "AUD"))
+        self.startingCurrencyInputDropDown.setItemText(4, _translate("MainWindow", "CAD"))
+        self.startingCurrencyInputDropDown.setItemText(5, _translate("MainWindow", "CHF"))
+        self.startingCurrencyInputDropDown.setItemText(6, _translate("MainWindow", "EUR"))
+        self.startingCurrencyInputDropDown.setItemText(7, _translate("MainWindow", "GBP"))
+        self.startingCurrencyInputDropDown.setItemText(8, _translate("MainWindow", "HKD"))
+        self.startingCurrencyInputDropDown.setItemText(9, _translate("MainWindow", "JPY"))
+        self.startingCurrencyInputDropDown.setItemText(10, _translate("MainWindow", "SGD"))
+
+        #Default exchange currency set to USD
+        self.exchangeCurrencyInputDropdown.setItemText(0, _translate("MainWindow", "USD")) 
+        self.exchangeCurrencyInputDropdown.setItemText(1, _translate("MainWindow", "IDR"))
+        self.exchangeCurrencyInputDropdown.setItemText(2, _translate("MainWindow", "AED"))
+        self.exchangeCurrencyInputDropdown.setItemText(3, _translate("MainWindow", "AUD"))
+        self.exchangeCurrencyInputDropdown.setItemText(4, _translate("MainWindow", "CAD"))
+        self.exchangeCurrencyInputDropdown.setItemText(5, _translate("MainWindow", "CHF"))
+        self.exchangeCurrencyInputDropdown.setItemText(6, _translate("MainWindow", "EUR"))
+        self.exchangeCurrencyInputDropdown.setItemText(7, _translate("MainWindow", "GBP"))
+        self.exchangeCurrencyInputDropdown.setItemText(8, _translate("MainWindow", "HKD"))
+        self.exchangeCurrencyInputDropdown.setItemText(9, _translate("MainWindow", "JPY"))
+        self.exchangeCurrencyInputDropdown.setItemText(10, _translate("MainWindow", "SGD"))
 
     #Code related to converting the currency
     def convert_currency_button_pressed(self):
-        starting_currency_input = self.startingCurrencyInput.toPlainText()
         
-        currency_exchange_value = data['conversion_rates']['IDR']
+        starting_currency = self.startingCurrencyInputDropDown.currentText() #Reads the currency input
+        exchange_currency = self.exchangeCurrencyInputDropdown.currentText() #Reads the exchange currency input
+    
+        url = 'https://v6.exchangerate-api.com/v6/115fa7e93047be6a26a1c328/pair/' + starting_currency + '/' + exchange_currency
+
+        # Making our request
+        response = requests.get(url)
+        data = response.json()
+        print(data)
+        
+        starting_currency_input = self.startingCurrencyInput.toPlainText() #Reads the input of the starting currency
+    
+        currency_exchange_value = data['conversion_rate'] #Gets the currency exchange rate
         print(currency_exchange_value)
 
         #Exchange currency calculation
-        calculate_exchange = float(float(starting_currency_input) / float(currency_exchange_value))
-        currency_exchange_output = round(calculate_exchange, 4)
+        calculate_exchange = float(float(starting_currency_input) * float(currency_exchange_value))
+        currency_exchange_output = round(calculate_exchange, 4) #Rounds off to 4dp
+        currency_exchange_output_text = str(currency_exchange_output)
+
+        self.exchangeCurrencyOutput.setText(currency_exchange_output_text)
+
+    #Code related to switching positions of the currency to change 
+    def switch_currency_button_pressed(self):
+        
+        temp = self.startingCurrencyInputDropDown.currentText() #Create a temp variable to store the value of the starting currency
+
+        self.startingCurrencyInputDropDown.setCurrentText(self.exchangeCurrencyInputDropdown.currentText()) #Changes the starting currency with the exchange currency
+        self.exchangeCurrencyInputDropdown.setCurrentText(temp) #Changes the exchange currency with the starting currency through the temp variable
+
+        starting_currency = self.startingCurrencyInputDropDown.currentText() #Reads the currency input
+        exchange_currency = self.exchangeCurrencyInputDropdown.currentText() #Reads the exchange currency input
+    
+        url = 'https://v6.exchangerate-api.com/v6/115fa7e93047be6a26a1c328/pair/' + starting_currency + '/' + exchange_currency
+
+        # Making our request
+        response = requests.get(url)
+        data = response.json()
+        print(data)
+        
+        self.startingCurrencyInput.setText(self.exchangeCurrencyOutput.text()) #Sets the text inside the starting currency input as the value of the exchanged currency label
+        starting_currency_input = self.exchangeCurrencyOutput.text() #Sets the starting currency as the previous exchanged currency value / previous output value
+    
+        currency_exchange_value = data['conversion_rate'] #Gets the currency exchange rate
+        print(currency_exchange_value)
+
+        #Exchange currency calculation
+        calculate_exchange = float(float(starting_currency_input) * float(currency_exchange_value))
+        currency_exchange_output = round(calculate_exchange, 4) #Rounds off to 4dp
         currency_exchange_output_text = str(currency_exchange_output)
 
         self.exchangeCurrencyOutput.setText(currency_exchange_output_text)
