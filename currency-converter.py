@@ -11,7 +11,7 @@ class Ui_MainWindow(object):
 
     def setupUi(self, MainWindow):
         MainWindow.setObjectName("Currency Converter")
-        MainWindow.setFixedSize(255, 500) #Fixed window size
+        MainWindow.setFixedSize(255, 525) #Fixed window size
         
         self.centralwidget = QtWidgets.QWidget(MainWindow)
         self.centralwidget.setObjectName("centralwidget")
@@ -28,7 +28,7 @@ class Ui_MainWindow(object):
         font.setPointSize(16)
         self.startingAmountInput.setFont(font)
         self.startingAmountInput.setObjectName("startingAmountInput")
-        self.startingAmountInput.setGeometry(QtCore.QRect(10, 80, 221, 41))
+        self.startingAmountInput.setGeometry(QtCore.QRect(10, 80, 221, 45))
 
         self.exchangeCurrencyOutput = QtWidgets.QLabel(self.centralwidget)
         font = QtGui.QFont()
